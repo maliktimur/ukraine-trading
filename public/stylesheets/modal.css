@@ -1,0 +1,98 @@
+#register_modal, #login_modal, #selling_modal{
+	display: block;
+	z-index: 99999;
+	margin:0;
+	padding: 0;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	
+}
+.modal{
+
+	padding-top: 200px;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.5);
+}
+.form2{
+	width: 350px;
+	border-radius: 20px;
+	border: 5px solid;
+	border-color: rgb(15,91,145);
+	/* height: 350px; */
+	background-color: rgb(211,224,233); 
+	padding: 20px;
+	/*transform: translate(135%,50%);*/
+}
+.form2 form{
+	width: 100%;
+	height: 100%;
+	
+}
+.inner_form{
+	display: flex;
+	justify-content: flex-end;
+	flex-direction: column;
+	align-self: center;
+}
+.inner_form input{
+	height: 25px;
+	outline: none;
+	/*width: 100px;*/
+	border-radius: 10px;
+	margin: 10px;
+}
+.selectu{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+.inner_form select{
+	height: 25px;
+	width: 150px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	outline: none;
+	border-radius: 10px;
+}
+.inner_form label{
+	text-align: center;
+}
+.file_button{
+	align-self: flex-end;
+}
+
+#close_button, #login_close_button, .close_button, .form_reset{
+	background-color: rgb(66,152,213);
+	border-color: rgb(66,152,213);
+}
+.submit_button{
+	background-color: rgb(15,91,145); 
+	border-color: rgb(15,91,145);
+}
+#close_button, .submit_button, #login_close_button,.close_button, .form_reset{
+	margin-bottom: 0;
+	margin-top: 2px;
+	color: white;
+  	font-weight: 700;
+  	user-select: none;
+  	outline: none;
+  	border: 2px solid;
+  	border-radius: 10px;
+	transition: 0.2s;
+	color:white;
+	/*background-color: rgb(15,91,145);*/
+	height: 25px;
+	width: 75px;
+	align-self: center;
+}
+.submit_button:active, #close_button:active, #login_close_button:active,.close_button:active, .form_reset:active{
+	background: white; 
+}
+.inner_form span{
+	text-align: center;
+}

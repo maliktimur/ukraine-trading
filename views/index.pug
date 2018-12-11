@@ -1,0 +1,411 @@
+extends layout
+
+block content
+    main.inner
+      header
+        .header.wrapp
+          .logo
+            a(href='/')
+              img(src='images/logo.png', alt='logo')
+          .info-1
+            .info
+              .info-logo
+                i.fas.fa-phone-square
+              h4.header-info 123 456 7890
+            .info
+              .info-logo
+                i.fas.fa-home
+              h4.header-info Office building, Street, Country
+      nav#navigation
+        .wrapp
+          a(href='#cars')
+            span PRE-OWNED CARS
+          a(href='#news_section')
+            span NEWS
+          a(href='#article_div')
+            span ABOUT US
+          a(href='#footer_section')
+            span CONTACT US
+          a#register(href='')
+            i.fas.fa-user-plus
+            span  SIGN UP
+          a#login(href='')
+            i.fas.fa-sign-in-alt
+            span.signin  SIGN IN
+      .searchback
+        .wrapp
+          .search 
+            h1.title SEARCH PRE-OWNED CARS
+            .selects
+              form(action='')
+                select
+                  option(value='', disabled='', selected='', hidden='') Make
+                  each res in results[0]
+                    option(value=res.idCar_make) #{res.Car_make}
+                select
+                  option(value='', disabled='', selected='', hidden='') Model
+                  each res in results[1]
+                    option(value=res.idCar_make) #{res.Model}
+                  
+                select
+                  option(value='', disabled='', selected='', hidden='') Year
+                  each res in results[1]
+                    option(value=res.idAnnouncement) #{res.Year}
+                select
+                  option(value='', disabled='', selected='', hidden='') Body Type
+                //- select
+                //-   option(value='', disabled='', selected='', hidden='') Mileage
+                input.search_button(type='button', value='Search')
+                input.reset_button(type='reset')
+            .searchbuttons
+              a(href='#cars')
+                .buy_button
+                  i.fas.fa-car
+                  span
+                    | BUY
+                    br
+                    | USED CARS
+              a#selling_window
+                .sell_button
+                  i.fas.fa-key
+                  span
+                    | SELL
+                    br
+                    | YOUR CAR
+      section#cars
+        .all_cars.wrapp
+          each item in results[1]
+            .car
+              .car_images
+                //- a(href='')
+                //- img(src='images/car.png', alt='Car')
+              .car_info
+                h4.car_div_title #{item.Car_make} #{item.Model}
+                //- h4.car_div_title #{item.Model}
+                h4.car_div_title #{item.Year}
+                p.car_div_text Engine: #{item.Engine_V}l
+                p.car_div_text Mileage: #{item.Mileage}km
+                h3.car_div_price $#{item.Price}
+                h4.car_div_title #{item.Name}
+                p.car_div_text 
+                  span.txt #{item.Phone} 
+                  span.btn    Show
+          //- .car
+          //-   .car_images
+          //-     a(href='')
+          //-       img(src='images/car.png', alt='Car')
+          //-   .car_info
+          //-     h4.car_div_title Car1
+          //-     p.car_div_text Mileage:------km
+          //-     h3.car_div_price $10000
+          //- .car
+          //-   .car_images
+          //-     a(href='')
+          //-       img(src='images/car.png', alt='Car')
+          //-   .car_info
+          //-     h4.car_div_title Car2
+          //-     p.car_div_text Mileage:------km
+          //-     h3.car_div_price $10000
+          //- .car
+          //-   .car_images
+          //-     a(href='')
+          //-       img(src='images/car.png', alt='Car')
+          //-   .car_info
+          //-     h4.car_div_title Car3
+          //-     p.car_div_text Mileage:------km
+          //-     h3.car_div_price $10000
+          //- .car
+          //-   .car_images
+          //-     a(href='')
+          //-       img(src='images/car.png', alt='Car')
+          //-   .car_info
+          //-     h4.car_div_title Car4
+          //-     p.car_div_text Mileage:------km
+          //-     h3.car_div_price $10000
+          //- .car
+          //-   .car_images
+          //-     a(href='')
+          //-       img(src='images/car.png', alt='Car')
+          //-   .car_info
+          //-     h4.car_div_title Car5
+          //-     p.car_div_text Mileage:------km
+          //-     h3.car_div_price $10000
+          //- .car
+          //-   .car_images
+          //-     a(href='')
+          //-       img(src='images/car.png', alt='Car')
+          //-   .car_info
+          //-     h4.car_div_title Car6
+          //-     p.car_div_text Mileage:------km
+          //-     h3.car_div_price $10000
+          //- .car
+          //-   .car_images
+          //-     a(href='')
+          //-       img(src='images/car.png', alt='Car')
+          //-   .car_info
+          //-     h4.car_div_title Car7
+          //-     p.car_div_text Mileage:------km
+          //-     h3.car_div_price $10000
+          //- .car
+          //-   .car_images
+          //-     a(href='')
+          //-       img(src='images/car.png', alt='Car')
+          //-   .car_info
+          //-     h4.car_div_title Car8
+          //-     p.car_div_text Mileage:------km
+          //-     h3.car_div_price $10000
+          // <div class="Arrows">
+          .left_arrow
+            a(href='')
+              i.fas.fa-chevron-left
+          .right_arrow
+            a(href='')
+              i.fas.fa-chevron-right
+          // </div>
+      #article_div
+        article.our_article.wrapp
+          aside
+            h2.about_title WHY CHOOSE OUR COMPANY?
+            p
+              | Proin iaculis purus consequat sem cure 
+              | digni ssim. Donec porttitora entum suscipit 
+              | aenean rhoncus posuere odio in tincidunt.
+              br
+              br
+              |             Proin iaculis purus consequat sem cure 
+              |                     digni ssim. Donec porttitora entum suscipit 
+              |                       aenean rhoncus posuere odio in tincidunt.
+              br
+              br
+              |                       Proin iaculis purus consequat sem cure
+              |                     digni ssim. Donec porttitora entum suscipit
+              |                       aenean rhoncus posuere odio in tincidunt.
+      section#news_section
+        .all_news.wrapp
+          .news_div_1
+            h2.title_of_lists PEACE OF MIND
+            p
+              | Lorem ipsum dolor sit amet, consectetur
+              | adipiscing elit, sed do eiusmod tempor in
+              | sed quia non numquam eius modi longer
+              | ut labore et dolore magna aliqua.
+            ul
+              li
+                i.fas.fa-chevron-circle-right
+                a(href='')  30 Days Limited Warranty
+              li
+                i.fas.fa-chevron-circle-right
+                a(href='')  Superb Customer Service
+              li
+                i.fas.fa-chevron-circle-right
+                a(href='')  Best In Class Vehicle
+              li
+                i.fas.fa-chevron-circle-right
+                a(href='')  Best Customer Experience
+              li
+                i.fas.fa-chevron-circle-right
+                a(href='')  Hassle-Free 3 Days Exchange
+              li
+                i.fas.fa-chevron-circle-right
+                a(href='')  Best Price/ Rates within 300 miles
+          .news_div_2
+            h2.title_of_lists
+              | NEWS
+            ul
+              li
+                i.fas.fa-chevron-circle-right
+                a(href='')  News1
+              li
+                i.fas.fa-chevron-circle-right
+                a(href='')  News2
+              li
+                i.fas.fa-chevron-circle-right
+                a(href='')  News3
+              li
+                i.fas.fa-chevron-circle-right
+                a(href='')  News4
+              li
+                i.fas.fa-chevron-circle-right
+                a(href='')  News5
+          .shedule_div
+            table.shedule_table(border='0')
+              caption
+                h2.about_article WORKING HOURS
+              tbody
+                tr.row
+                  th.leftcolumn  DAY
+                  th SALES
+                  th SERVICE
+                  th PARTS
+                tr
+                  th.leftcolumn Mon
+                  th 9am-8pm
+                  th 9am-6pm
+                  th 9am-6pm
+                tr
+                  th.leftcolumn Tue
+                  th 9am-8pm
+                  th 9am-6pm
+                  th 9am-6pm
+                tr
+                  th.leftcolumn Wed
+                  th 9am-8pm
+                  th 9am-6pm
+                  th 9am-6pm
+                tr
+                  th.leftcolumn Thu
+                  th 9am-8pm
+                  th 9am-6pm
+                  th 9am-6pm
+                tr
+                  th.leftcolumn Fri
+                  th 9am-8pm
+                  th 9am-6pm
+                  th 9am-6pm
+                tr
+                  th.leftcolumn Sat
+                  th 9am-8pm
+                  th Closed
+                  th Closed
+                tr
+                  th.leftcolumn Sun
+                  th 9am-8pm
+                  th Closed
+                  th Closed
+      #register_modal
+        .modal
+          .form2.wrapp
+            form(method='post' action='/', name='register')
+              // <fieldset class="auth">
+              // <legend>Sign up</legend>
+              .inner_form
+                span Sign up!
+                input(type='text', required='', placeholder='First name', name='Name')
+                input#sur_name(type='text', placeholder='Last name', name='Surname')
+                input(type='email', required='', placeholder='E-mail', name='Email')
+                input(type='text', placeholder='Phone(+XXXXX...)',pattern='[+][0-9]{6,}' , name='Phone')
+                input(type='password', required='', placeholder='Password', name='Phone')
+                // <input type="password" id="re_pass" required="" placeholder="Confirm password">
+                input.submit_button(type='submit',name='add', value='Register')
+                input#close_button(type='button', value='Close')
+              // </fieldset>
+      #login_modal
+        .modal
+          .form2.wrapp
+            form(action='action.php', name='sign in')
+              // <fieldset>
+              .inner_form
+                span Sign in!
+                input(type='email', required='', placeholder='E-mail')
+                input(type='password', required='', placeholder='Password')
+                input.submit_button(type='button', value='Login')
+                input#login_close_button(type='button', value='Close')
+              // </fieldset>
+      #selling_modal
+        .modal
+          .form2.wrapp
+            form(action='action.php', name='Sell')
+              // <fieldset>
+              .inner_form
+                span Car selling
+                span Input info about your car
+                .selectu
+                  select
+                    option(value='', disabled='', selected='', hidden='') Make
+                    each res in results[0]
+                      option(value=res.idCar_make) #{res.Car_make}
+                  select
+                    option(value='', disabled='', selected='', hidden='') Model
+                  select
+                    option(value='', disabled='', selected='', hidden='') Year
+                  select
+                    option(value='', disabled='', selected='', hidden='') Body Type
+                label(for='mileage')
+                  input#mileage(type='number', placeholder='Mileage')
+                label(for='price')
+                  input#price(type='number', placeholder='Price')
+                input.file_button(type='file')
+                input.submit_button(type='button', value='Add')
+                input.form_reset(type='reset')
+                input.close_button(type='button', value='Close')
+              // </fieldset>
+      section#footer_section
+        .footer_div_1_back
+          .footer_div_1.wrapp
+            .sales_div
+              .sales_info
+                .sales_icon
+                  i.fas.fa-mobile-alt
+                .sales-info
+                  h4 SALES CONTACT
+                  h3 123 456 7890
+            .sales_div
+              .sales_info
+                .sales_icon
+                  i.fas.fa-wrench
+                .sales-info
+                  h4 SERVICE CONTACT
+                  h3 098 765 4321
+            .sales_div
+              .sales_info
+                .sales_icon
+                  i.fab.fa-whmcs
+                .sales-info
+                  h4 PARTS CONTACT
+                  h3 000 000 0000
+            .sales_div
+              .sales_info
+                .sales_icon
+                  i.fas.fa-file-signature
+                .sales-info
+                  h4 ONLINE APPRAISAL
+                  h3 000 000 0000
+        footer
+          .footer_div_2
+            .footer_lists.wrapp
+              #company_div.company_div
+                h4 COMPANY
+                ul
+                  li
+                    i.fas.fa-caret-right
+                    a(href='#article_div')  About us
+                  li
+                    i.fas.fa-caret-right
+                    a(href='#news_section')  Services
+                  li
+                    i.fas.fa-caret-right
+                    a(href='#news_section')  News
+              .brands_div
+                h4 POPULAR BRANDS
+                ul
+                  li
+                    i.fas.fa-caret-right
+                    a(href='')  Audi
+                  li
+                    i.fas.fa-caret-right
+                    a(href='')  BMW
+                  li
+                    i.fas.fa-caret-right
+                    a(href='')  Mercedes-Benz
+                  li
+                    i.fas.fa-caret-right
+                    a(href='')  Toyota
+                  li
+                    i.fas.fa-caret-right
+                    a(href='')  Volkswagen
+              .contacts_div
+                h4 CONTACT US
+                span  123 456 7890
+                span  Office building, Street, Country
+              .follow_us_div
+                .follow_text
+                  h4 FOLLOW US:
+                .follow_icons
+                  a(href='http://www.instagram.com/', target='_blank')
+                    i.fab.fa-instagram
+                  a(href='http://www.facebook.com/', target='_blank')
+                    i.fab.fa-facebook-square
+                  a(href='http://www.twitter.com/', target='_blank')
+                    i.fab.fa-twitter-square
+                  a(href='http://www.google.com', target='_blank')
+                    i.fab.fa-google-plus-square

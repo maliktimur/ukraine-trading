@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  #register_modal
+          .modal
+            .form2.wrapp
+              form(method='post' action='/register', name='register')
+                // <fieldset class="auth">
+                // <legend>Sign up</legend>
+                .inner_form
+                  span Sign up!
+                  input(type='text', required='', placeholder='First name', name='Name')
+                  input#sur_name(type='text', placeholder='Last name', name='Surname')
+                  input(type='email', required='', placeholder='E-mail', name='Email')
+                  input(type='text', placeholder='Phone', name='Phone')
+                  input(type='password', required='', placeholder='Password', name='Phone')
+                  // <input type="password" id="re_pass" required="" placeholder="Confirm password">
+                  input.submit_button(type='submit',name='add', value='Register')
