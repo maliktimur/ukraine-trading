@@ -75,10 +75,11 @@ block content
       section#cars
         .all_cars.wrapp
           each item in results[1]
+            //- var href = #{item.Photo}
             .car
               .car_images
-                //- a(href='')
-                //- img(src='images/car.png', alt='Car')
+                a(href='')
+                  img(src=item.Photo , alt='Car')
               .car_info
                 h4.car_div_title #{item.Car_make} #{item.Model}
                 //- h4.car_div_title #{item.Model}
@@ -275,7 +276,7 @@ block content
       #register_modal
         .modal
           .form2.wrapp
-            form(method='post' action='/', name='register')
+            form(method='post' action='/clientregister', name='register',onsumbit='Refresh()')
               // <fieldset class="auth">
               // <legend>Sign up</legend>
               .inner_form
@@ -284,10 +285,10 @@ block content
                 input#sur_name(type='text', placeholder='Last name', name='Surname')
                 input(type='email', required='', placeholder='E-mail', name='Email')
                 input(type='text', placeholder='Phone(+XXXXX...)',pattern='[+][0-9]{6,}' , name='Phone')
-                input(type='password', required='', placeholder='Password', name='Phone')
+                input(type='password', required='', placeholder='Password', name='Password')
                 // <input type="password" id="re_pass" required="" placeholder="Confirm password">
-                input.submit_button(type='submit',name='add', value='Register')
-                input#close_button(type='button', value='Close')
+                button.submit_button(type='submit',name='Submit') Register
+                button#close_button(type='button') Close
               // </fieldset>
       #login_modal
         .modal
@@ -298,8 +299,8 @@ block content
                 span Sign in!
                 input(type='email', required='', placeholder='E-mail')
                 input(type='password', required='', placeholder='Password')
-                input.submit_button(type='button', value='Login')
-                input#login_close_button(type='button', value='Close')
+                button.submit_button(type='submit') Login
+                button#login_close_button Close
               // </fieldset>
       #selling_modal
         .modal
@@ -324,10 +325,14 @@ block content
                   input#mileage(type='number', placeholder='Mileage')
                 label(for='price')
                   input#price(type='number', placeholder='Price')
-                input.file_button(type='file')
-                input.submit_button(type='button', value='Add')
-                input.form_reset(type='reset')
-                input.close_button(type='button', value='Close')
+                label(for='photolink') Input direct link with photo of your car 
+                  p You can use
+                  a(href='') https://imgbb.com/ 
+                  input(type='text',style='width: 300px;', placeholder='')
+                //- input.file_button(type='file')
+                button.submit_button(type='button') Add
+                button.form_reset(type='reset') Reset
+                button.close_button(type='button') Close
               // </fieldset>
       section#footer_section
         .footer_div_1_back

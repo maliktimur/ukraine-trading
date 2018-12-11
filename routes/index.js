@@ -17,5 +17,38 @@ router.get('/', function(req, res, next) {
   		});
 	});
 });
+router.post('/clientregister', function(req, res, next){
+	connection.query("CALL ClientInsert(?,?,?,?,?);",
+	[
+	Name = req.param("Name"),
+	Surname = req.param("Surname"),
+	Email = req.param("Email"),
+	Phone = req.param("Phone"),
+	Password = req.param("Password")
+	], function(error, results, fields){
+		if(error){
+			return console.error(error.message);
+		}
+		console.log('Add client to DB');
+	}) 
+
+});
+
+router.post('/sellingcar', function(req, res, next){
+	connection.query("CALL ClientInsert(?,?,?,?,?);",
+	[
+	Name = req.param("Name"),
+	Surname = req.param("Surname"),
+	Email = req.param("Email"),
+	Phone = req.param("Phone"),
+	Password = req.param("Password")
+	], function(error, results, fields){
+		if(error){
+			return console.error(error.message);
+		}
+		console.log('Add client to DB');
+	}) 
+
+});
 
 module.exports = router;

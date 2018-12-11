@@ -255,6 +255,7 @@ background: white;
 }
 .car img{
 	width: 100%;
+	height: 164px;
 }
 .car_info{
 	border-top: 5px solid rgb(66,152,213);
