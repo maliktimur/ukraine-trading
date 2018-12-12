@@ -22,7 +22,7 @@
 	
 }
 @media(max-width: 956px){
-	.left_arrow{
+	/*.left_arrow{
 		
 		transform: none;
 		left: 40%;
@@ -39,9 +39,7 @@
 		bottom: 27%;
 		height: 0;
 		margin-left: 200px;
-		margin-top: -20px;
-		
-	}
+	*/
 }
 @media (max-width: 768px) {
 	.header{

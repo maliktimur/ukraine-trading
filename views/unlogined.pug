@@ -5,7 +5,7 @@ block content
       header
         .header.wrapp
           .logo
-            a(href='/')
+            a(href='/main')
               img(src='images/logo.png', alt='logo')
           .info-1
             .info
@@ -26,7 +26,7 @@ block content
             span ABOUT US
           a(href='#footer_section')
             span CONTACT US
-          a#register(href='')
+          a#register(href='/')
             i.fas.fa-user-plus
             span  SIGN UP
           a#login(href='')
@@ -47,39 +47,32 @@ block content
                   each res in results[1]
                     option(value=res.idCar_make) #{res.Model}
                   
-                select
-                  option(value='', disabled='', selected='', hidden='') Year
-                  each res in results[1]
-                    option(value=res.idAnnouncement) #{res.Year}
-                select
-                  option(value='', disabled='', selected='', hidden='') Body Type
+                //- select
+                //-   option(value='', disabled='', selected='', hidden='') Year
+                  //- each res in results[1]
+                  //-   option(value=res.idAnnouncement) #{res.Year}
+                //- select
+                //-   option(value='', disabled='', selected='', hidden='') Body Type
                 //- select
                 //-   option(value='', disabled='', selected='', hidden='') Mileage
                 input.search_button(type='button', value='Search')
                 input.reset_button(type='reset')
             .searchbuttons
               a(href='#cars')
-                .buy_button
+                .buy_button(style='width:350px;')
                   i.fas.fa-car
                   span
                     | BUY
                     br
                     | USED CARS
-              a#selling_window
-                .sell_button
-                  i.fas.fa-key
-                  span
-                    | SELL
-                    br
-                    | YOUR CAR
       section#cars
         .all_cars.wrapp
           each item in results[1]
             //- var href = #{item.Photo}
             .car
               .car_images
-                a(href='')
-                  img(src=item.Photo , alt='Car')
+                //- a(href='')
+                img(src=item.Photo , alt='Car')
               .car_info
                 h4.car_div_title #{item.Car_make} #{item.Model}
                 //- h4.car_div_title #{item.Model}
@@ -89,8 +82,8 @@ block content
                 h3.car_div_price $#{item.Price}
                 h4.car_div_title #{item.Name}
                 p.car_div_text 
-                  span.txt #{item.Phone} 
-                  span.btn    Show
+                  span.txt #{item.Phone}  
+                  span.btn Show
           //- .car
           //-   .car_images
           //-     a(href='')
@@ -276,29 +269,34 @@ block content
       #register_modal
         .modal
           .form2.wrapp
-            form(method='post' action='/clientregister', name='register',onsumbit='Refresh()')
+            form(method='post' action='/clientregister',id='formt', name='register',onsumbit='Refresh()')
               // <fieldset class="auth">
               // <legend>Sign up</legend>
               .inner_form
                 span Sign up!
-                input(type='text', required='', placeholder='First name', name='Name')
-                input#sur_name(type='text', placeholder='Last name', name='Surname')
+                input(type='text', required='', placeholder='First name', pattern='^[a-zA-Z]+$', name='Name')
+                input#sur_name(type='text', placeholder='Last name',pattern='^[a-zA-Z]+$', name='Surname')
                 input(type='email', required='', placeholder='E-mail', name='Email')
                 input(type='text', placeholder='Phone(+XXXXX...)',pattern='[+][0-9]{6,}' , name='Phone')
                 input(type='password', required='', placeholder='Password', name='Password')
                 // <input type="password" id="re_pass" required="" placeholder="Confirm password">
                 button.submit_button(type='submit',name='Submit') Register
                 button#close_button(type='button') Close
+                  //- script.
+                  //-   document.getElementById("formt").onsubmit = function() {myFunction()};
+                  //-   function myFunction() {
+                  //-     alert('Registered!')
+                  //-   }
               // </fieldset>
       #login_modal
         .modal
           .form2.wrapp
-            form(action='action.php', name='sign in')
+            form(action='/login', name='sign in', method='post')
               // <fieldset>
               .inner_form
                 span Sign in!
-                input(type='email', required='', placeholder='E-mail')
-                input(type='password', required='', placeholder='Password')
+                input(type='email', required='', name='email', placeholder='E-mail')
+                input(type='password', required='', name='password', placeholder='Password')
                 button.submit_button(type='submit') Login
                 button#login_close_button Close
               // </fieldset>
@@ -315,8 +313,7 @@ block content
                     option(value='', disabled='', selected='', hidden='') Make
                     each res in results[0]
                       option(value=res.idCar_make) #{res.Car_make}
-                  select
-                    option(value='', disabled='', selected='', hidden='') Model
+                  input(type='text', placeholder='Model')
                   select
                     option(value='', disabled='', selected='', hidden='') Year
                   select
@@ -326,13 +323,21 @@ block content
                 label(for='price')
                   input#price(type='number', placeholder='Price')
                 label(for='photolink') Input direct link with photo of your car 
-                  p You can use
+                  p Use this
                   a(href='') https://imgbb.com/ 
                   input(type='text',style='width: 300px;', placeholder='')
                 //- input.file_button(type='file')
                 button.submit_button(type='button') Add
                 button.form_reset(type='reset') Reset
                 button.close_button(type='button') Close
+                //- script
+                //-   function getCookie(name) {
+                //-     var matches = document.cookie.match(new RegExp(
+                //-     "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+                //-       ));
+                //-       return matches ? decodeURIComponent(matches[1]) : undefined;
+                //-     }
+                    //- console.log(getCookie('user_id'))
               // </fieldset>
       section#footer_section
         .footer_div_1_back
