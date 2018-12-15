@@ -215,6 +215,7 @@ background: white;
 }
 #cars{
 	/*position: relative;*/
+	padding: 30px;
 	background-color: rgb(211,224,233);
 }
 .all_cars{
@@ -253,6 +254,7 @@ background: white;
 	color: white;
 }
 .car{
+
 	margin-top: 30px;
 	background-color: white;
 	width: 235px;

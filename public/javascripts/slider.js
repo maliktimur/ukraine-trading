@@ -1,9 +1,10 @@
 $(document).ready(function(){
-    $('.cars_slider').on('swipe', function(event, slick, direction){
+
+    $('.cars_slider').slick({
     	// console.log(direction);
         dots: true,
  	 	// infinite: false,
-		speed: 300,
+		// speed: 300,
 		slidesToShow: 1,
 		slidesToScroll: 1
       });

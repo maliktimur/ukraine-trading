@@ -43,16 +43,16 @@ block content
           .search 
             h1.title SEARCH PRE-OWNED CARS
             .selects
-              form(method='get',action='/main')
-                select#make_select(name='make_select', onChange='go(this)')
+              form(method='get',action='/search')
+                select#make_select(required='',name='make_select', onChange='go(this)')
                   option(value='*', disabled='', selected='', hidden='') Make
                   each res in results[0]
                     option(value=res.idCar_make) #{res.Car_make}
 
-                select#model_select
+                select#model_select(required='', name='model_select')
                   option(value='', disabled='', selected='', hidden='') Model
                   each res in results[2]
-                    option(value=res.idCar_make 'data-mark'=res.Car_make) #{res.Model}
+                    option(value=res.Model 'data-mark'=res.Car_make) #{res.Model}
                   
                 //- select
                 //-   option(value='', disabled='', selected='', hidden='') Year
@@ -62,7 +62,7 @@ block content
                 //-   option(value='', disabled='', selected='', hidden='') Body Type
                 //- select
                 //-   option(value='', disabled='', selected='', hidden='') Mileage
-                input.search_button(type='button', value='Search')
+                input.search_button(type='submit', value='Search')
                 input.reset_button(type='reset')
             .searchbuttons.scrollnav
               a(href='#cars')
@@ -82,26 +82,26 @@ block content
       section#cars
         .cars_slider
           each chunk in results[3]
-            //- h1 chunk
-            .all_cars.wrapp
-
-              each item in chunk
-                //- var href = #{item.Photo}
-                .car
-                  .car_images
-                    //- a(href='')
-                    img(src=item.Photo , alt='Car')
-                  .car_info
-                    h4.car_div_title #{item.Car_make} #{item.Model}
-                    //- h4.car_div_title #{item.Model}
-                    h4.car_div_title #{item.Year}
-                    p.car_div_text Engine: #{item.Engine_V}l
-                    p.car_div_text Mileage: #{item.Mileage}km
-                    h3.car_div_price $#{item.Price}
-                    h4.car_div_title #{item.Name}
-                    p.car_div_text 
-                      span.txt #{item.Phone}  
-                      span.btn Show
+            div
+              //- h1 chunk
+              .all_cars.wrapp
+                each item in chunk
+                  //- var href = #{item.Photo}
+                  .car
+                    .car_images
+                      //- a(href='')
+                      img(src=item.Photo , alt='Car')
+                    .car_info
+                      h4.car_div_title #{item.Car_make} #{item.Model}
+                      //- h4.car_div_title #{item.Model}
+                      h4.car_div_title #{item.Year}
+                      p.car_div_text Engine: #{item.Engine_V}l
+                      p.car_div_text Mileage: #{item.Mileage}km
+                      h3.car_div_price $#{item.Price}
+                      h4.car_div_title #{item.Name}
+                      p.car_div_text 
+                        span.txt #{item.Phone}  
+                        span.btn Show
         // .left_arrow
         //   a(href='')
         //     i.fas.fa-chevron-left
@@ -265,10 +265,14 @@ block content
                     option(value='', disabled='', selected='', hidden='') Make
                     each item in results[0]
                       option(value=item.idCar_make) #{item.Car_make}
-                  input(name='model',type='text', placeholder='Model', required='', style='text-transform: capitalize;')
-                  input(name='year',type='tel', placeholder='Year', pattern='[0-9]{4}', required='')
-                  input(name='body',type='text', placeholder='Body type', required='', style='text-transform: capitalize;')
-                  input(type='text',placeholder='Engine_V',required='', pattern='\d[0-9]{1}+[.]+\d[0-9]{1}',name='engine')
+                  input(name='model',type='text', placeholder='Model',required='', style='text-transform: capitalize;', id='patter-model')
+                  
+                  input(name='year',type='tel', placeholder='Year', data-mask="0000", required='')
+                  input(name='body',type='text', placeholder='Body type', required='',pattern='^[a-zA-Z]+$',maxlength=32 , style='text-transform: capitalize;')
+                  input(type='text',placeholder='Engine_V',required='', data-mask="0.0",name='engine')
+
+                  
+
                   // select
                   //   option(value='', disabled='', selected='', hidden='') Year
                   // select
@@ -280,7 +284,32 @@ block content
                 label(for='photolink') Input direct link with photo of your car 
                   p Use this
                   a(href='https://imgbb.com/', target='_blank') https://imgbb.com/ 
-                  input(name='photolink',type='text',style='width: 300px;', placeholder='')
+                  input(name='photolink',type='url',style='width: 300px;', placeholder='', required)
+                script.
+                    $(document).ready(function(){
+                      $('[name="year"]').mask('0000');
+                      $('[name="engine"]').mask('0.0');
+                      $('[name="body"]').on('change paste keyup', function(el) {
+                        var val = $(this).val();
+                        val = val.replace(/[^a-zA-Z]/g, '');
+                        $(this).val(val.slice(0, 32));
+                      })
+                      $('[name="model"]').on('change paste keyup', function(el) {
+                        var val = $(this).val();
+                        val = val.replace(/[^a-zA-Z0-9]/g, '');
+                        $(this).val(val.slice(0, 32));
+                      })
+                      $('[name="mileage"]').on('change paste keyup', function(el) {
+                        var val = $(this).val();
+                        val = val.replace(/[^0-9]/g, '');
+                        $(this).val(val);
+                      })
+                      $('[name="price"]').on('change paste keyup', function(el) {
+                        var val = $(this).val();
+                        val = val.replace(/[^0-9]/g, '');
+                        $(this).val(val);
+                      })
+                    });
                 //- input.file_button(type='file')
                 button.submit_button(type='submit') Add
                 button.form_reset(type='reset') Reset

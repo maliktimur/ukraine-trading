@@ -29,7 +29,11 @@ function IndexMiddleware(req, res){
 
 		// 3
 		results.push(chunked);
-		// console.dir(chunked, {depth:1});
+		console.log(results[0]);
+		// console.log(results[1]);
+		// console.log(results[2]);
+		console.log(results[3]);
+		console.dir(chunked, {depth:1});
 		// console.log(results[2]);
   		// console.log(results[0]); // [{1: 1}]
   		// console.log(results[1]); // [{2: 2}]
@@ -67,16 +71,6 @@ router.get('/logout', (req, res) => {
         });
         
 });
-router.get('/main/search:make_select', function(req, res, next){
-	var make_select = req.body.make_select; 
-	console.log(req.params.make_select);
-	// connection.query('', function(err, results, fields){
-	// 	if(err) throw err
-	// 	res.render('logined',{
-	// 		results
-	// 	});
-	// });
-});
 /* GET home page. */
 router.get('/main', isAuthenticated, (req, res, next) => {
 	res.locals.logined = true;
@@ -90,7 +84,60 @@ router.get('/', function(req, res, next) {
 	}
 	next();
 }, IndexMiddleware);
+router.get('/search', (req,res,next)=>{
+	// console.log(req.param("make_select"), req.param("model_select"))
+	connection.query('Select * from car_make; SELECT * FROM Cars21; SELECT * from Cars21 WHERE idCar_make=? AND Model=?;',
+		[
+			(make=req.param("make_select")),
+			(model= req.param("model_select"))
+		], function(err,results,fields){
+		console.log(make,model);
+		if(err) throw err
+		// console.log(make, model);
+		// var make=req.body.make_select; 
+		// var model= String(req.body.model_select);
+		// console.log(make, model);
+		var unique2 = [];
+		var selected = results[2];
+		// console.log('selected', selected)
+		results = results.slice(0, 2);
+		 results[1].forEach(el => {
+  			if(unique2.map(_ => _.Model).indexOf(el.Model) === -1) {
+  				unique2.push(el);
+  			} else {
+  			}
+  		})
 
+  		// results[3] == unique
+  		results.push(unique2);
+
+		// results.push([]);
+		var chunked2 = [];
+		var i,j,chunk = 8;
+		for (i=0,j=selected.length; i<j; i+=chunk) {
+		    chunked2.push(selected.slice(i,i+chunk));
+		}
+
+		// 4
+		results.push(chunked2);
+		console.dir(results[3]);
+
+		// console.log(results);
+		if(res.locals.logined) {
+
+  			res.render('logined',{
+	  			id : req.session.user_id,
+	  			title : req.session.first_name,
+	  			results
+	  		});
+  		}
+  		else {
+  			res.render('unlogined',{
+	  			results
+	  		});
+		}
+	});
+});
 
 router.post('/clientregister', function(req, res, next){
 	connection.query("CALL ClientInsert(?,?,?,?,?);",
