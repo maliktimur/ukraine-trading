@@ -24,6 +24,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: "myOwnSecret",
+  resave: false,
   cookie: { maxAge: 1000 * 60 * 60 * 24 }
 }))
 

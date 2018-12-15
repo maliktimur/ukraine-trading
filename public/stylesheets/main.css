@@ -21,7 +21,6 @@ header{
 	display: block;
 	position: relative;
 }
-
 #navigation{
 	/*position: fixed;*/
 	background-color: rgb(15,91,145);
@@ -41,6 +40,10 @@ header{
 #navigation a#login, #navigation a#register{
 	float:right;
 	margin-right: auto;
+}
+.allnav{
+	display: flex;
+	justify-content: space-between;
 }
 .signin{
 	margin-right: 25px;
@@ -143,7 +146,7 @@ background: white;
 	margin-left: 5px;
 }
 .reset_button:active{
-	background-color: rgba(255,255,255); 
+	background: white; 
 }
 /*
 .reset_button:hover{
@@ -161,6 +164,7 @@ background: white;
 	
 }
 .searchbuttons a{
+	width:100;
 	text-decoration: none;
 	color: white;
 }
@@ -466,6 +470,7 @@ input[type=number]::-webkit-outer-spin-button {
 	border-bottom: 1px dashed; 
 	cursor:pointer;
 }
+
 
 /*.fixed_top{
 	width: 100%;

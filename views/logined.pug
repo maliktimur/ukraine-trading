@@ -18,35 +18,41 @@ block content
               h4.header-info Office building, Street, Country
       nav#navigation
         .wrapp
-          a(href='#cars')
-            span PRE-OWNED CARS
-          a(href='#news_section')
-            span NEWS
-          a(href='#article_div')
-            span ABOUT US
-          a(href='#footer_section')
-            span CONTACT US
-          a(href="/logout", style='float:right;margin-right:0;')
-            i.fas.fa-sign-in-alt
-            span.signin(style='margin-right: 0;') LOG OUT
-          span(style='color:white; float: right; line-height: 43px; margin-right:10px;') USER_ID: 
-            #{id} 
-            //- var id = req.session.user_id
-            console.log(session.user_id.user_id)
+          .allnav
+            .scrollnav
+              a(href='#cars')
+                span PRE-OWNED CARS
+              a(href='#news_section')
+                span NEWS
+              a(href='#article_div')
+                span ABOUT US
+              a(href='#footer_section')
+                span CONTACT US
+            div
+              span(style='color:white; line-height: 43px; margin-right:10px;') HELLO, 
+                =title
+                span(name='userid',style='margin-left: 10px;') ID: 
+                  =id
+              div(style='display: inline-block;')
+                a(href='/logout', style='margin-right: 0;')
+                  i.fas.fa-sign-out-alt
+                  span.signin(style='margin-right: 0;') LOG OUT
+
       .searchback
         .wrapp
           .search 
             h1.title SEARCH PRE-OWNED CARS
             .selects
-              form(action='')
-                select
-                  option(value='', disabled='', selected='', hidden='') Make
+              form(method='get',action='/main')
+                select#make_select(name='make_select', onChange='go(this)')
+                  option(value='*', disabled='', selected='', hidden='') Make
                   each res in results[0]
                     option(value=res.idCar_make) #{res.Car_make}
-                select
+
+                select#model_select
                   option(value='', disabled='', selected='', hidden='') Model
-                  each res in results[1]
-                    option(value=res.idCar_make) #{res.Model}
+                  each res in results[2]
+                    option(value=res.idCar_make 'data-mark'=res.Car_make) #{res.Model}
                   
                 //- select
                 //-   option(value='', disabled='', selected='', hidden='') Year
@@ -58,7 +64,7 @@ block content
                 //-   option(value='', disabled='', selected='', hidden='') Mileage
                 input.search_button(type='button', value='Search')
                 input.reset_button(type='reset')
-            .searchbuttons
+            .searchbuttons.scrollnav
               a(href='#cars')
                 .buy_button
                   i.fas.fa-car
@@ -74,96 +80,34 @@ block content
                     br
                     | YOUR CAR
       section#cars
-        .all_cars.wrapp
-          each item in results[1]
-            //- var href = #{item.Photo}
-            .car
-              .car_images
-                //- a(href='')
-                img(src=item.Photo , alt='Car')
-              .car_info
-                h4.car_div_title #{item.Car_make} #{item.Model}
-                //- h4.car_div_title #{item.Model}
-                h4.car_div_title #{item.Year}
-                p.car_div_text Engine: #{item.Engine_V}l
-                p.car_div_text Mileage: #{item.Mileage}km
-                h3.car_div_price $#{item.Price}
-                h4.car_div_title #{item.Name}
-                p.car_div_text 
-                  span.txt #{item.Phone}  
-                  span.btn Show
-          //- .car
-          //-   .car_images
-          //-     a(href='')
-          //-       img(src='images/car.png', alt='Car')
-          //-   .car_info
-          //-     h4.car_div_title Car1
-          //-     p.car_div_text Mileage:------km
-          //-     h3.car_div_price $10000
-          //- .car
-          //-   .car_images
-          //-     a(href='')
-          //-       img(src='images/car.png', alt='Car')
-          //-   .car_info
-          //-     h4.car_div_title Car2
-          //-     p.car_div_text Mileage:------km
-          //-     h3.car_div_price $10000
-          //- .car
-          //-   .car_images
-          //-     a(href='')
-          //-       img(src='images/car.png', alt='Car')
-          //-   .car_info
-          //-     h4.car_div_title Car3
-          //-     p.car_div_text Mileage:------km
-          //-     h3.car_div_price $10000
-          //- .car
-          //-   .car_images
-          //-     a(href='')
-          //-       img(src='images/car.png', alt='Car')
-          //-   .car_info
-          //-     h4.car_div_title Car4
-          //-     p.car_div_text Mileage:------km
-          //-     h3.car_div_price $10000
-          //- .car
-          //-   .car_images
-          //-     a(href='')
-          //-       img(src='images/car.png', alt='Car')
-          //-   .car_info
-          //-     h4.car_div_title Car5
-          //-     p.car_div_text Mileage:------km
-          //-     h3.car_div_price $10000
-          //- .car
-          //-   .car_images
-          //-     a(href='')
-          //-       img(src='images/car.png', alt='Car')
-          //-   .car_info
-          //-     h4.car_div_title Car6
-          //-     p.car_div_text Mileage:------km
-          //-     h3.car_div_price $10000
-          //- .car
-          //-   .car_images
-          //-     a(href='')
-          //-       img(src='images/car.png', alt='Car')
-          //-   .car_info
-          //-     h4.car_div_title Car7
-          //-     p.car_div_text Mileage:------km
-          //-     h3.car_div_price $10000
-          //- .car
-          //-   .car_images
-          //-     a(href='')
-          //-       img(src='images/car.png', alt='Car')
-          //-   .car_info
-          //-     h4.car_div_title Car8
-          //-     p.car_div_text Mileage:------km
-          //-     h3.car_div_price $10000
-          // <div class="Arrows">
-          .left_arrow
-            a(href='')
-              i.fas.fa-chevron-left
-          .right_arrow
-            a(href='')
-              i.fas.fa-chevron-right
-          // </div>
+        .cars_slider
+          each chunk in results[3]
+            //- h1 chunk
+            .all_cars.wrapp
+
+              each item in chunk
+                //- var href = #{item.Photo}
+                .car
+                  .car_images
+                    //- a(href='')
+                    img(src=item.Photo , alt='Car')
+                  .car_info
+                    h4.car_div_title #{item.Car_make} #{item.Model}
+                    //- h4.car_div_title #{item.Model}
+                    h4.car_div_title #{item.Year}
+                    p.car_div_text Engine: #{item.Engine_V}l
+                    p.car_div_text Mileage: #{item.Mileage}km
+                    h3.car_div_price $#{item.Price}
+                    h4.car_div_title #{item.Name}
+                    p.car_div_text 
+                      span.txt #{item.Phone}  
+                      span.btn Show
+        // .left_arrow
+        //   a(href='')
+        //     i.fas.fa-chevron-left
+        // .right_arrow
+        //   a(href='')
+        //     i.fas.fa-chevron-right
       #article_div
         article.our_article.wrapp
           aside
@@ -311,31 +255,34 @@ block content
       #selling_modal
         .modal
           .form2.wrapp
-            form(action='action.php', name='Sell')
+            form(method='post',action='/sellingcar', name='Sell')
               // <fieldset>
               .inner_form
                 span Car selling
                 span Input info about your car
                 .selectu
-                  select
+                  select(name="make", required='')
                     option(value='', disabled='', selected='', hidden='') Make
-                    each res in results[0]
-                      option(value=res.idCar_make) #{res.Car_make}
-                  input(type='text', placeholder='Model')
-                  select
-                    option(value='', disabled='', selected='', hidden='') Year
-                  select
-                    option(value='', disabled='', selected='', hidden='') Body Type
+                    each item in results[0]
+                      option(value=item.idCar_make) #{item.Car_make}
+                  input(name='model',type='text', placeholder='Model', required='', style='text-transform: capitalize;')
+                  input(name='year',type='tel', placeholder='Year', pattern='[0-9]{4}', required='')
+                  input(name='body',type='text', placeholder='Body type', required='', style='text-transform: capitalize;')
+                  input(type='text',placeholder='Engine_V',required='', pattern='\d[0-9]{1}+[.]+\d[0-9]{1}',name='engine')
+                  // select
+                  //   option(value='', disabled='', selected='', hidden='') Year
+                  // select
+                  //   option(value='', disabled='', selected='', hidden='') Body Type
                 label(for='mileage')
-                  input#mileage(type='number', placeholder='Mileage')
+                  input#mileage(name='mileage',type='number', placeholder='Mileage', required='')
                 label(for='price')
-                  input#price(type='number', placeholder='Price')
+                  input#price(name='price',type='number', placeholder='Price',required='')
                 label(for='photolink') Input direct link with photo of your car 
                   p Use this
-                  a(href='') https://imgbb.com/ 
-                  input(type='text',style='width: 300px;', placeholder='')
+                  a(href='https://imgbb.com/', target='_blank') https://imgbb.com/ 
+                  input(name='photolink',type='text',style='width: 300px;', placeholder='')
                 //- input.file_button(type='file')
-                button.submit_button(type='button') Add
+                button.submit_button(type='submit') Add
                 button.form_reset(type='reset') Reset
                 button.close_button(type='button') Close
                 //- script
@@ -398,19 +345,19 @@ block content
                 ul
                   li
                     i.fas.fa-caret-right
-                    a(href='')  Audi
+                    a(href='https://www.audi.com/en.html',target='_blank')  Audi
                   li
                     i.fas.fa-caret-right
-                    a(href='')  BMW
+                    a(href='https://www.bmw.com/en/index.html', target'_blank')  BMW
                   li
                     i.fas.fa-caret-right
-                    a(href='')  Mercedes-Benz
+                    a(href='https://www.mercedes-benz.com/en/', target='_blank')  Mercedes-Benz
                   li
                     i.fas.fa-caret-right
-                    a(href='')  Toyota
+                    a(href='https://www.toyota.com/', target='_blank')  Toyota
                   li
                     i.fas.fa-caret-right
-                    a(href='')  Volkswagen
+                    a(href='http://volkswagen.com/',target='_blank')  Volkswagen
               .contacts_div
                 h4 CONTACT US
                 span  123 456 7890
