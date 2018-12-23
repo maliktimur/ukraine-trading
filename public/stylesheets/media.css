@@ -49,6 +49,9 @@
 	.search{
 		width: 100%;
 	}
+	.buy_button{
+		width: 100%;
+	}
 	.searchbuttons div{
 		width: 100%;
 	}
@@ -126,6 +129,9 @@
 @media (max-width: 700px) {
 	nav{
 		display: none;
+	}
+	.btn-menu{
+		display: block;
 	}
 	/*.selects{
 		align-items: center;

@@ -29,11 +29,11 @@ function IndexMiddleware(req, res){
 
 		// 3
 		results.push(chunked);
-		console.log(results[0]);
+		// console.log(results[0]);
 		// console.log(results[1]);
 		// console.log(results[2]);
-		console.log(results[3]);
-		console.dir(chunked, {depth:1});
+		// console.log(results[3]);
+		// console.dir(chunked, {depth:1});
 		// console.log(results[2]);
   		// console.log(results[0]); // [{1: 1}]
   		// console.log(results[1]); // [{2: 2}]
@@ -120,7 +120,7 @@ router.get('/search', (req,res,next)=>{
 
 		// 4
 		results.push(chunked2);
-		console.dir(results[3]);
+		// console.dir(results[3]);
 
 		// console.log(results);
 		if(res.locals.logined) {
@@ -188,8 +188,9 @@ router.post('/login', (req, res) => {
 	const email = String(req.body.email)
     const password = String(req.body.password)
     connection.query(`Select * From clients where email='${email}'`, (err, result, fields) => {
-    	if(err) throw err 
-    	// console.log(result[0])
+    	if(err) throw res.send("Incorrect error!");
+    	// console.log(result)
+    	if(result.length === 0) return	res.send("Email does not exist!");
     	const user = result[0];
     	// console.log(md5(password), user.Password)
     	if(md5(password) === user.Password){
@@ -201,11 +202,10 @@ router.post('/login', (req, res) => {
     		// const firstname = user.Name
 			console.log(req.session.user_id)
 			console.log(req.session.first_name)
-    		res.redirect('/main')
+    		res.redirect('/main');
     	} else {
     		// alert('Wrong password')
-    		res.redirect('/main')
-    		// alert({content:'Wrong password!!!'});
+    		res.redirect('/main');
     	}  
     
     	

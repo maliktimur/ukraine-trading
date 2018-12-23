@@ -16,6 +16,37 @@ block content
               .info-logo
                 i.fas.fa-home
               h4.header-info Office building, Street, Country
+      input#hmt.hidden-menu-ticker(type="checkbox")
+      label.btn-menu#btn-menu(for="hmt")
+        span.first
+        span.second
+        span.third
+      nav.hidden-menu#hidden-menu
+        .wrapp
+          .allnav
+            .scrollnav
+              a(href='#cars')
+                span PRE-OWNED CARS
+              a(href='#news_section')
+                span NEWS
+              a(href='#article_div')
+                span ABOUT US
+              a(href='#footer_section')
+                span CONTACT US
+            div.dropdown#dropdown2
+              //- i.fas.fa-user(style='color:white;')
+              a.mainmenubtn#mainmenubtn2 MY PROFILE 
+                i.fas.fa-angle-down#btn3
+              ul.dropdown-child#dropdown-child2
+                li
+                  span(style='color:white; line-height: 43px; margin-right:10px;')
+                    =title 
+                  span(name='userid',style='margin-left: 10px;color:white;') ID: 
+                    =id
+                li
+                  a(href='/logout', style='margin-right: 0;')
+                    i.fas.fa-sign-out-alt
+                    span.signin(style='margin-right: 0;') LOG OUT
       nav#navigation
         .wrapp
           .allnav
@@ -28,16 +59,20 @@ block content
                 span ABOUT US
               a(href='#footer_section')
                 span CONTACT US
-            div
-              span(style='color:white; line-height: 43px; margin-right:10px;') HELLO, 
-                =title
-                span(name='userid',style='margin-left: 10px;') ID: 
-                  =id
-              div(style='display: inline-block;')
-                a(href='/logout', style='margin-right: 0;')
-                  i.fas.fa-sign-out-alt
-                  span.signin(style='margin-right: 0;') LOG OUT
-
+            div.dropdown#dropdown
+              //- i.fas.fa-user(style='color:white;')
+              a.mainmenubtn#mainmenubtn MY PROFILE 
+                i.fas.fa-angle-down#btn2
+              ul.dropdown-child#dropdown-child
+                li
+                  span(style='color:white; line-height: 43px; margin-right:10px;')
+                    =title 
+                  span(name='userid',style='margin-left: 10px;color:white;') ID: 
+                    =id
+                li
+                  a(href='/logout', style='margin-right: 0;')
+                    i.fas.fa-sign-out-alt
+                    span.signin(style='margin-right: 0;') LOG OUT
       .searchback
         .wrapp
           .search 
@@ -62,18 +97,18 @@ block content
                 //-   option(value='', disabled='', selected='', hidden='') Body Type
                 //- select
                 //-   option(value='', disabled='', selected='', hidden='') Mileage
-                input.search_button(type='submit', value='Search')
+                input.search_button(type='submit', value='Search',style='border-color:rgb(15,91,145);')
                 input.reset_button(type='reset')
             .searchbuttons.scrollnav
-              a(href='#cars')
-                .buy_button
+              a(href='#cars',style='margin-right:0px;')
+                .buy_button(style='width:100%;')
                   i.fas.fa-car
                   span
                     | BUY
                     br
                     | USED CARS
-              a#selling_window
-                .sell_button
+              a#selling_window(style='margin-right:0px;')
+                .sell_button(style='width:100%;cursor:pointer;')
                   i.fas.fa-key
                   span
                     | SELL

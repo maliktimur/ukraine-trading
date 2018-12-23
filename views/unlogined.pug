@@ -16,6 +16,36 @@ block content
               .info-logo
                 i.fas.fa-home
               h4.header-info Office building, Street, Country
+      input#hmt.hidden-menu-ticker(type="checkbox")
+      label.btn-menu#btn-menu(for="hmt")
+        span.first
+        span.second
+        span.third
+      nav.hidden-menu#hidden-menu
+        .wrapp
+          .allnav
+            .scrollnav
+              a(href='#cars')
+                span PRE-OWNED CARS
+              a(href='#news_section')
+                span NEWS
+              a(href='#article_div')
+                span ABOUT US
+              a(href='#footer_section')
+                span CONTACT US
+            div.dropdown#dropdown2
+              //- i.fas.fa-user(style='color:white;')
+              a.mainmenubtn#mainmenubtn2 MY PROFILE 
+                i.fas.fa-angle-down#btn3
+              ul.dropdown-child#dropdown-child2
+                li
+                  a#login(style='cursor:pointer;')
+                    i.fas.fa-sign-in-alt
+                    span.signin  SIGN IN
+                li
+                  a#register(style='cursor: pointer;')
+                    i.fas.fa-user-plus
+                    span  SIGN UP
       nav#navigation
         .wrapp
           .allnav
@@ -28,13 +58,19 @@ block content
                 span ABOUT US
               a(href='#footer_section')
                 span CONTACT US
-            div
-              a#register(style='cursor: pointer;')
-                i.fas.fa-user-plus
-                span  SIGN UP
-              a#login(style='cursor:pointer;')
-                i.fas.fa-sign-in-alt
-                span.signin  SIGN IN
+            div.dropdown#dropdown
+              //- i.fas.fa-user(style='color:white;')
+              a.mainmenubtn#mainmenubtn MY PROFILE 
+                i.fas.fa-angle-down#btn2
+              ul.dropdown-child#dropdown-child
+                li
+                  a#login123(style='cursor:pointer;')
+                    i.fas.fa-sign-in-alt
+                    span.signin  SIGN IN
+                li
+                  a#register123(style='cursor: pointer;')
+                    i.fas.fa-user-plus
+                    span  SIGN UP
       .searchback
         .wrapp
           .search 
@@ -57,11 +93,11 @@ block content
                 //-   option(value='', disabled='', selected='', hidden='') Body Type
                 //- select
                 //-   option(value='', disabled='', selected='', hidden='') Mileage
-                input.search_button(type='submit', value='Search')
+                input.search_button(type='submit', value='Search', style='border-color:rgb(15,91,145);')
                 input.reset_button(type='reset', value='Reset')
             .searchbuttons.scrollnav
-              a(href='#cars')
-                .buy_button(style='width:350px;')
+              a(href='#cars',style='margin-right:0px;')
+                .buy_button
                   i.fas.fa-car
                   span
                     | BUY
@@ -78,8 +114,8 @@ block content
                   //- var href = #{item.Photo}
                   .car.clearfix
                     .car_images
-                      //- a(href='')
-                      img(src=item.Photo , alt='Car')
+                      a(href='https://www.google.com')
+                        img(src=item.Photo , alt='Car')
                     .car_info
                       h4.car_div_title #{item.Car_make} #{item.Model}
                       //- h4.car_div_title #{item.Model}
@@ -216,9 +252,9 @@ block content
               .inner_form
                 span Sign up!
                 input(type='text', required='', placeholder='First name', pattern='^[a-zA-Z]+$',maxlength=45, name='Name', style='text-transform: capitalize;')
-                input#sur_name(type='text', placeholder='Last name',pattern='^[a-zA-Z]+$',maxlength=45, name='Surname', style='text-transform: capitalize;')
+                input#sur_name(type='text', placeholder='Last name',pattern='^[a-zA-Z]+$',maxlength=45, name='Surname', style='text-transform: capitalize;',required='')
                 input(type='email', required='', placeholder='E-mail', name='Email')
-                input(id='phone_mask', type='text', placeholder='Phone(+XXXXX...)',maxlength=13, name='Phone')
+                input(id='phone_mask', type='text', placeholder='Phone(+XXXXX...)',maxlength=13, name='Phone',required='')
                 input(type='password', required='', placeholder='Password',maxlength=32, name='Password')
                 // <input type="password" id="re_pass" required="" placeholder="Confirm password">
                 script.

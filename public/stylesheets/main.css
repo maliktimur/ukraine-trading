@@ -24,7 +24,7 @@ header{
 #navigation{
 	/*position: fixed;*/
 	background-color: rgb(15,91,145);
-	height: 45px;
+	/*height: 45px;*/
 
 }
 #navigation a:hover{
@@ -32,13 +32,75 @@ header{
 }
 #navigation a{
 	display: inline-block;
-	margin-top: 10px;
+	/*margin-top: 10px;*/
 	text-decoration: none;
-	margin-right: 25px;
+	/*margin-right: 25px;*/
 	color: white;
 }
+.dropdown{
+	cursor: pointer;
+	height: 100%;
+	/*padding-top: 10px;
+	padding-bottom: 10px;*/
+	padding: 10px;
+	border: 2px solid white;
+	/*border-radius: 10px;*/
+	margin: 5px;
+}
+.dropdown-child{
+	width: 140px;
+	/*display: none;*/
+}
+.scrollnav{
+	height: 100%;
+	align-self: center;
+	/*padding-top: 10px;
+	padding-bottom: 10px;*/
+}
+.scrollnav a{
+	margin-right: 25px;
+}
+.dropdown-child{
+  background: rgb(15,91,145);
+  position: absolute;
+  right: 0;
+  top:96%;
+  z-index: 5;
+  /*width: 180px;*/
+  display: none;
+ /* opacity: 0;
+  transform: scaleY(0);
+  transform-origin: 0 0;
+  transition: .5s ease-in-out;*/
+  margin: 0;
+  padding:0;
+  list-style:none;
+}
+.dropdown-child li{
+	text-align: center;
+}
+.mainmenubtn{
+  cursor:pointer;
+}
+.dropdown a#mainmenubtn:hover{
+	color:white;
+}
+.dropdown-child a {
+  color: white;
+  text-align: left;
+  padding: 15px;
+  /*padding: 12px 15px;*/
+  /*font-size: 13px;*/
+  border-bottom: 1px solid rgb(255,255,255);
+}
+.dropdown-child li:last-child a { border-bottom: none; }
+/*.dropdown:hover .dropdown-child {
+	display: block;
+  opacity: 1;
+  /*transform: scaleY(1);
+}*/
 #navigation a#login, #navigation a#register{
-	float:right;
+	/*float:right;*/
 	margin-right: auto;
 }
 .allnav{
@@ -46,7 +108,7 @@ header{
 	justify-content: space-between;
 }
 .signin{
-	margin-right: 25px;
+	/*margin-right: 25px;*/
 }
 .logo{
 	margin-top: 5px;
@@ -156,15 +218,16 @@ background: white;
 	bottom: 0%;
 	left: 0%;
 	display: flex;
+	padding-bottom: 0px;
 }
 
 .searchbuttons div{
 	display: block;
-	width: 175px;	 
+	/*width: 175px;	 */
 	
 }
 .searchbuttons a{
-	width:100;
+	width:100%;
 	text-decoration: none;
 	color: white;
 }
@@ -175,6 +238,7 @@ background: white;
 	color: rgb(166,218,255);
 }
 .buy_button{
+	width: 350px;
 	padding-top: 20px;
 	padding-bottom: 20px;
 	display: block;
@@ -473,8 +537,110 @@ input[type=number]::-webkit-outer-spin-button {
 	border-bottom: 1px dashed; 
 	cursor:pointer;
 }
+form input:valid {
+  border-color: green;
+}
 
-
+form input:invalid {
+  border-color: red;
+}
+.hidden-menu {
+  display: block;
+  position: fixed;
+  list-style:none;
+  padding: 10px;
+  margin: 0;
+  box-sizing: border-box;
+  width: 200px;
+  background-color: rgb(15,91,145);
+  /*height: 100%;*/
+  top: 0;
+  left: -200px;
+  transition: left .2s;
+  z-index: 2;
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+}
+.hidden-menu .allnav{
+	display: flex;
+	flex-direction: column;
+}
+.hidden-menu .scrollnav{
+	display: flex;
+	flex-direction: column;
+}
+.hidden-menu .scrollnav a, .hidden-menu .dropdown a{
+	color: white;
+	text-decoration: none;
+}
+.hidden-menu .dropdown-child{
+	width: 100%;
+}
+.hidden-menu .dropdown-child a{
+	color: white;
+    text-align: left;
+	/*padding: 15px;*/
+    /*padding: 12px 15px;*/
+    /*font-size: 13px;*/
+	border-bottom: 1px solid rgb(255,255,255);
+	/*width: 100%;*/
+}
+.hidden-menu .scrollnav a:hover{
+	color:rgb(66,152,213);
+}
+.hidden-menu .dropdown-child a:hover{
+	color:rgb(66,152,213);
+}
+.hidden-menu .dropdown-child li{
+	text-align: center;
+	padding: 15px;
+}
+.hidden-menu-ticker {
+  display: none;
+}
+.btn-menu {
+	display: none;
+  color: #fff;
+  background-color: rgb(15,91,145);
+  padding: 5px;
+  position: fixed;
+  top: 5px;
+  left: 5px;
+  cursor: pointer;
+  transition: left .23s;
+  z-index: 3;
+  width: 25px;
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+}
+.btn-menu span {
+  display: block;
+  height: 5px;
+  background-color: #fff;
+  margin: 5px 0 0;
+  transition: all .1s linear .23s;
+  position: relative;
+}
+.btn-menu span.first {
+  margin-top: 0;
+}
+.hidden-menu-ticker:checked ~ .btn-menu {
+  left: 160px;
+}
+.hidden-menu-ticker:checked ~ .hidden-menu {
+  left: 0;
+}
+.hidden-menu-ticker:checked ~ .btn-menu span.first {
+  -webkit-transform: rotate(45deg);
+  top: 10px;
+}
+.hidden-menu-ticker:checked ~ .btn-menu span.second {
+  opacity: 0;
+}
+.hidden-menu-ticker:checked ~ .btn-menu span.third {
+  -webkit-transform: rotate(-45deg);
+  top: -10px;
+}
 /*.fixed_top{
 	width: 100%;
 	z-index: 9999;
